@@ -6,7 +6,6 @@ const consoleRead = readline.createInterface({
   output: process.stdout
 });
 
-var nextMsg = "";
 
 const server = net.createServer((socket) => {
   console.log('.NET has connected!\n');
@@ -18,10 +17,6 @@ const server = net.createServer((socket) => {
       socket.write(answer.toString());
       consoleRead.close();
     });
-
-
-    
-    // Send a raw TCP response back to the client
     
   });
 
