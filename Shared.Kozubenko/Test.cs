@@ -1,23 +1,29 @@
 ﻿using Shared.Kozubenko.Protocols;
 using Shared.Kozubenko.Protocols.Messages;
+using Shared.Kozubenko.Utilities;
+using System.Diagnostics;
 using System.Net;
+using System.Text;
 
 namespace Shared.Kozubenko
 {
     public class Test
     {
-        public static void Main(string[] args)
+        class Utf8StringWriter : System.IO.StringWriter
         {
-            //ServerTryParse(GenerateConsumptionRequest());
-
-            var stream = GenerateConsumptionResponse();
-
-            foreach (var value in stream)
+            public override Encoding Encoding
             {
-                Console.Write($"{value} ");
-                //Console.Write($"{value:X2} ");
+                get { return Encoding.UTF8; }
             }
         }
+
+
+
+        public static void Main(string[] args)
+        {
+            Env.Load();
+        }
+
         public static byte[] GenerateConsumptionResponse()
         {
             var consumptionInfo = new SimpleConsumption()
